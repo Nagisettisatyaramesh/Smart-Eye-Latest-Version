@@ -46,7 +46,13 @@ export function Lifecycle() {
   const barWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section ref={sectionRef} className="relative bg-navy-950" style={{ height: `calc(${total * 62}vh + 420px)` }}>
+    <>
+    {/* Desktop: cinematic scroll-driven experience */}
+    <section
+      ref={sectionRef}
+      className="relative hidden bg-navy-950 lg:block"
+      style={{ height: `calc(${total * 62}vh + 420px)` }}
+    >
       <div className="pt-28 sm:pt-32">
         <Container className="relative">
           <SectionHeading
@@ -181,5 +187,54 @@ export function Lifecycle() {
         </Container>
       </div>
     </section>
+
+    {/* Mobile: vertical interactive timeline */}
+    <section className="relative bg-navy-950 py-24 lg:hidden">
+      <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.12]" aria-hidden="true" />
+      <Container className="relative">
+        <SectionHeading
+          eyebrow="The medical device lifecycle"
+          title="One platform, present at every stage."
+          body="Follow a device from first requirement to post-market surveillance — SmartEye stays connected at every step."
+        />
+
+        <div className="relative mt-14">
+          <div className="absolute bottom-2 left-[19px] top-2 w-px bg-white/10" aria-hidden="true" />
+          <div className="space-y-10">
+            {lifecycleStages.map((stage, i) => (
+              <motion.div
+                key={stage.number}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="relative flex gap-5 pl-0"
+              >
+                <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-teal-400/40 bg-navy-950 font-mono text-xs text-teal-300">
+                  {stage.number}
+                </div>
+                <div className="flex-1 pb-1">
+                  <h3 className="font-display text-lg font-semibold text-ice-100">{stage.title}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-ice-400">{stage.note}</p>
+                  {STAGE_IMAGES[stage.number] && (
+                    <div className="relative mt-4 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-white/10">
+                      <Image
+                        src={STAGE_IMAGES[stage.number]}
+                        alt={`${stage.title} — SmartEye eQMS`}
+                        fill
+                        sizes="100vw"
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-transparent" />
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </section>
+    </>
   );
 }

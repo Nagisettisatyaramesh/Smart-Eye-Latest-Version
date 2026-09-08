@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { NetworkCanvas } from "@/components/ui/NetworkCanvas";
 import { Reveal } from "@/components/ui/Reveal";
@@ -14,7 +15,15 @@ export default function ContactPage() {
   return (
     <section className="relative overflow-hidden bg-void pb-28 pt-40 sm:pt-48">
       <div className="absolute inset-0" aria-hidden="true">
-        <div className="absolute inset-0 bg-[radial-gradient(100%_70%_at_50%_-10%,#0f1c26_0%,#050a10_50%,#04070a_100%)]" />
+        <Image
+          src="/images/microscope-petri.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(100%_70%_at_50%_-10%,rgba(15,28,38,0.5)_0%,rgba(5,10,16,0.75)_50%,rgba(4,7,10,0.92)_100%)]" />
         <div className="absolute inset-0 bg-grid opacity-[0.18] mask-fade-b" />
         <NetworkCanvas className="absolute inset-0 h-full w-full opacity-40" density={22} />
       </div>
@@ -24,7 +33,7 @@ export default function ContactPage() {
           <Reveal>
             <p className="eyebrow kicker-line text-teal-400">Contact</p>
             <h1 className="mt-6 font-display text-4xl font-bold leading-[1.08] tracking-tightest text-ice-100 sm:text-5xl">
-              Talk to the SmartEye eQMS team.
+              Let's build better quality systems.
             </h1>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-ice-300">
               Want to understand more about how SmartEye eQMS could transform the way you manage

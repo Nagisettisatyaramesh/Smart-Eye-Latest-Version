@@ -26,7 +26,7 @@ export default function DesignControlPage() {
     <>
       <PageHero
         eyebrow="Design control"
-        title="Design control, without the spreadsheet sprawl."
+        title="From idea to verified design."
         body="Manage the full medical device design lifecycle — from design inputs and outputs to verification, validation and design reviews — aligned to FDA 21 CFR 820 and ISO 13485."
         image="/images/scientist-pipette.jpg"
         imageAlt="A scientist precisely handling lab samples during device verification"

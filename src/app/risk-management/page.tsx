@@ -16,8 +16,8 @@ export default function RiskManagementPage() {
     <>
       <PageHero
         eyebrow="Risk management"
-        title="Risk management aligned to ISO 14971, connected to everything else."
-        body="Identify and mitigate risk with hazard analysis workflows that stay connected to the design and test record — so residual risk is always backed by evidence."
+        title="Risk isn't a document. It's a living record."
+        body="A risk file that lives in a spreadsheet goes stale the moment a requirement changes. SmartEye keeps hazards, controls and verification evidence linked to the requirements and tests they depend on, aligned to ISO 14971 — so when something changes upstream, the risk record reflects it."
         image="/images/microscope-black.jpg"
         imageAlt="A row of laboratory microscopes used for detailed hazard analysis"
         primaryCta={{ label: "Request a Demo", href: "/contact#demo" }}
@@ -27,9 +27,9 @@ export default function RiskManagementPage() {
       <section className="border-y border-white/8 bg-navy-950 py-20">
         <Container className="max-w-3xl">
           <SectionHeading
-            eyebrow="Why it matters"
-            title="Risk isn't a document. It's a living record."
-            body="A risk file that lives in a spreadsheet goes stale the moment a requirement changes. SmartEye keeps hazards, controls and verification evidence linked to the requirements and tests they depend on — so when something changes upstream, the risk record reflects it."
+            eyebrow="The flow"
+            title="Hazard → Risk → Mitigation → Control → Verification."
+            body="Every risk moves through the same connected path — from first identification to verified control — with nothing left to track separately."
           />
         </Container>
       </section>

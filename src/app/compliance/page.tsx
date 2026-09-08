@@ -17,7 +17,7 @@ export default function CompliancePage() {
   return (
     <>
       <PageHero
-        eyebrow="Compliance"
+        eyebrow="Compliance architecture"
         title="Built around the standards that matter."
         body="SmartEye's workflows are pre-configured around the frameworks medical device and SaMD teams are held to — kept in view across every project, from first requirement to post-market surveillance."
         image="/images/test-tubes.jpg"

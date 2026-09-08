@@ -23,7 +23,7 @@ export default function SamdPage() {
     <>
       <PageHero
         eyebrow="Software as a Medical Device"
-        title="Standalone medical software, held to the same standard."
+        title="Built for Software as a Medical Device."
         body="Whether you're developing hardware-based devices or standalone medical software, SmartEye helps you streamline your product lifecycle while staying compliant with global regulatory standards for SaMD."
         image="/images/engineer-laptop.jpg"
         imageAlt="A researcher working at a lab bench with connected instrumentation"

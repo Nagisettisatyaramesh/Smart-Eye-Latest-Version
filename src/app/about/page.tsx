@@ -22,20 +22,37 @@ export default function AboutPage() {
       />
 
       <section className="border-y border-white/8 bg-navy-950 py-20">
-        <Container className="max-w-3xl">
+        <Container className="grid gap-14 lg:grid-cols-2">
           <Reveal>
-            <p className="text-lg leading-relaxed text-ice-300">
+            <p className="eyebrow kicker-line text-teal-400">Who we are</p>
+            <p className="mt-5 text-lg leading-relaxed text-ice-300">
               S-Cube Technologies connects leading innovators from the medical device and
               healthcare sector to the very best in specialist advice and facilities. We help
               forward-thinking organisations identify and access new markets with our software
               and digital solutions, all while offering tailored support that enhances business
               capability and innovation management.
             </p>
-            <p className="mt-6 text-lg leading-relaxed text-ice-300">
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="eyebrow kicker-line text-teal-400">Why SmartEye</p>
+            <p className="mt-5 text-lg leading-relaxed text-ice-300">
               SmartEye eQMS is powered by S-Cube Technologies — your growth, driven by our
               innovation. We help you grow your ideas by taking care of the process, implementing
               management processes and providing the services you need, so you don't have to
               worry.
+            </p>
+          </Reveal>
+        </Container>
+      </section>
+
+      <section className="border-b border-white/8 bg-void py-20">
+        <Container className="max-w-3xl">
+          <Reveal>
+            <p className="eyebrow kicker-line text-teal-400">Global perspective</p>
+            <p className="mt-5 text-lg leading-relaxed text-ice-300">
+              Medical device and SaMD teams work across borders, standards and time zones.
+              SmartEye eQMS is built to be securely available wherever your team is — so
+              collaboration, review and approval don't stop at a single office.
             </p>
           </Reveal>
         </Container>
