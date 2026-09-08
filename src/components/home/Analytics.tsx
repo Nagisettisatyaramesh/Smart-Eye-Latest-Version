@@ -60,9 +60,10 @@ function Donut() {
 
 export function Analytics() {
   return (
-    <section className="relative overflow-hidden bg-void py-28 sm:py-36">
+    <section className="relative overflow-hidden bg-ice-100 py-28 sm:py-36">
       <Container className="relative">
         <SectionHeading
+          surface="light"
           align="center"
           eyebrow="Analytics"
           title="See the state of quality, at a glance."
@@ -131,7 +132,7 @@ export function Analytics() {
           </div>
         </motion.div>
 
-        <p className="mx-auto mt-6 max-w-lg text-center text-xs text-ice-400">
+        <p className="mx-auto mt-6 max-w-lg text-center text-xs text-graphite-500">
           Illustrative product view — sample data shown for demonstration purposes only.
         </p>
       </Container>

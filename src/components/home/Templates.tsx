@@ -19,10 +19,11 @@ const positions = [
 
 export function Templates() {
   return (
-    <section className="relative overflow-hidden bg-navy-950 py-28 sm:py-36">
+    <section className="relative overflow-hidden bg-white py-28 sm:py-36">
       <Container className="relative grid gap-14 lg:grid-cols-[1fr_1fr] lg:items-center">
         <div className="order-2 lg:order-1">
           <SectionHeading
+            surface="light"
             eyebrow="Ready-to-use templates"
             title="Start faster with proven quality frameworks."
             body="SmartEye is pre-installed with hundreds of ready-made SOPs and templates — including QMS, DHF and technical files — with automatic DHF and DMR generation and ready-made checklists, so your documentation meets industry standards from day one."
@@ -30,7 +31,7 @@ export function Templates() {
         </div>
 
         <div className="relative order-1 aspect-square w-full max-w-md justify-self-center lg:order-2">
-          <div className="absolute inset-0 rounded-full bg-teal-400/5 blur-3xl" aria-hidden="true" />
+          <div className="absolute inset-0 rounded-full bg-teal-500/8 blur-3xl" aria-hidden="true" />
           {templateCategories.map((cat, i) => (
             <motion.div
               key={cat}
@@ -41,15 +42,15 @@ export function Templates() {
               className="absolute animate-float"
               style={{ ...positions[i], animationDelay: `${i * 0.5}s` }}
             >
-              <div className="glass-panel flex h-16 w-16 flex-col items-center justify-center rounded-2xl text-center shadow-panel sm:h-20 sm:w-20">
-                <span className="text-[0.6rem] font-semibold leading-tight text-ice-200 sm:text-xs">{cat}</span>
+              <div className="flex h-16 w-16 flex-col items-center justify-center rounded-2xl border border-navy-950/8 bg-ice-100 text-center shadow-md sm:h-20 sm:w-20">
+                <span className="text-[0.6rem] font-semibold leading-tight text-graphite-600 sm:text-xs">{cat}</span>
               </div>
             </motion.div>
           ))}
 
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex h-24 w-24 items-center justify-center rounded-full border border-teal-400/40 bg-navy-950 shadow-glow sm:h-28 sm:w-28">
-              <span className="text-center font-display text-xs font-bold leading-tight text-teal-300">
+            <div className="flex h-24 w-24 items-center justify-center rounded-full border border-teal-500/40 bg-white shadow-[0_0_50px_rgba(22,184,166,0.25)] sm:h-28 sm:w-28">
+              <span className="text-center font-display text-xs font-bold leading-tight text-teal-600">
                 SmartEye
                 <br />
                 eQMS

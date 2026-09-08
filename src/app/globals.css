@@ -66,6 +66,20 @@ body {
   background-size: 64px 64px;
 }
 
+.bg-grid-light {
+  background-image:
+    linear-gradient(to right, rgba(7, 17, 31, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(7, 17, 31, 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.glass-panel-light {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(247, 250, 252, 0.85) 100%);
+  border: 1px solid rgba(7, 17, 31, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
 .mask-fade-b {
   mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);

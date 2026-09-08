@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
+import { SystemDiagram } from "@/components/home/SystemDiagram";
 import { PlatformFeatures } from "@/components/home/PlatformFeatures";
 import { Traceability } from "@/components/home/Traceability";
 import { QmsProcesses } from "@/components/platform/QmsProcesses";
@@ -45,6 +46,7 @@ export default function PlatformPage() {
         </Container>
       </section>
 
+      <SystemDiagram />
       <PlatformFeatures />
       <div id="traceability">
         <Traceability />

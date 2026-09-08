@@ -7,7 +7,7 @@ import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 
 export function PillarsStrip() {
   return (
-    <section className="relative border-y border-white/8 bg-navy-950/60 py-14">
+    <section className="relative border-y border-navy-950/8 bg-ice-100 py-14">
       <Container>
         <motion.div
           initial="hidden"
@@ -18,8 +18,8 @@ export function PillarsStrip() {
         >
           {pillars.map((p) => (
             <motion.div key={p.title} variants={fadeUp}>
-              <p className="font-display text-sm font-semibold text-teal-300">{p.title}</p>
-              <p className="mt-1.5 text-xs leading-relaxed text-ice-400">{p.body}</p>
+              <p className="font-display text-sm font-semibold text-teal-600">{p.title}</p>
+              <p className="mt-1.5 text-xs leading-relaxed text-graphite-500">{p.body}</p>
             </motion.div>
           ))}
         </motion.div>

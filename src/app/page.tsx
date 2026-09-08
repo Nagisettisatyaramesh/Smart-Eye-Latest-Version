@@ -3,7 +3,6 @@ import { PillarsStrip } from "@/components/home/PillarsStrip";
 import { ProblemSection } from "@/components/home/ProblemSection";
 import { SystemDiagram } from "@/components/home/SystemDiagram";
 import { Lifecycle } from "@/components/home/Lifecycle";
-import { PlatformFeatures } from "@/components/home/PlatformFeatures";
 import { Traceability } from "@/components/home/Traceability";
 import { RiskMatrix } from "@/components/home/RiskMatrix";
 import { TestManagement } from "@/components/home/TestManagement";
@@ -24,7 +23,6 @@ export default function HomePage() {
       <ProblemSection />
       <SystemDiagram />
       <Lifecycle />
-      <PlatformFeatures />
       <Traceability />
       <RiskMatrix />
       <TestManagement />

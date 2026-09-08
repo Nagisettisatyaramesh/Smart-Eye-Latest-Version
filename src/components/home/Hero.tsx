@@ -8,12 +8,49 @@ import { easePremium } from "@/lib/motion";
 
 const headlineWords = ["Quality", "intelligence", "for", "medical", "device", "innovation."];
 
-const floatingChips = [
-  { label: "Design Verification", status: "Passed", top: "18%", left: "8%", delay: 1.6 },
-  { label: "ISO 14971 Risk Review", status: "On Track", top: "68%", left: "6%", delay: 1.9 },
-  { label: "IEC 62304 Trace", status: "Linked", top: "24%", left: "82%", delay: 2.1 },
-  { label: "CAPA-0142", status: "Closed", top: "72%", left: "80%", delay: 2.35 },
+const floatingCards = [
+  {
+    title: "Design Verification",
+    status: "Passed",
+    tone: "pass" as const,
+    detail: "TC-2201",
+    top: "14%",
+    right: "4%",
+    delay: 1.6,
+  },
+  {
+    title: "ISO 14971 Risk Review",
+    status: "On Track",
+    tone: "track" as const,
+    detail: "RM-031",
+    top: "39%",
+    right: "9%",
+    delay: 1.9,
+  },
+  {
+    title: "Traceability",
+    status: "Complete",
+    tone: "pass" as const,
+    detail: "118 linked artifacts",
+    top: "63%",
+    right: "3%",
+    delay: 2.15,
+  },
+  {
+    title: "CAPA-0142",
+    status: "Closed",
+    tone: "pass" as const,
+    detail: "Verified · 2 approvals",
+    top: "86%",
+    right: "10%",
+    delay: 2.4,
+  },
 ];
+
+const toneStyle = {
+  pass: { dot: "bg-teal-400 shadow-[0_0_8px_2px_rgba(79,214,200,0.6)]", text: "text-teal-300" },
+  track: { dot: "bg-signal-amber shadow-[0_0_8px_2px_rgba(232,169,79,0.5)]", text: "text-signal-amber" },
+};
 
 export function Hero() {
   return (
@@ -48,21 +85,28 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-void to-transparent" />
       </div>
 
-      {/* floating status chips — decorative, hidden from small screens & AT */}
+      {/* floating product notifications — decorative, hidden from small screens & AT */}
       <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
-        {floatingChips.map((chip) => (
+        {floatingCards.map((card) => (
           <motion.div
-            key={chip.label}
+            key={card.title}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: chip.delay, ease: easePremium }}
-            className="absolute animate-float"
-            style={{ top: chip.top, left: chip.left, animationDelay: `${chip.delay}s` }}
+            transition={{ duration: 1, delay: card.delay, ease: easePremium }}
+            className="absolute w-52 animate-float"
+            style={{ top: card.top, right: card.right, animationDelay: `${card.delay}s` }}
           >
-            <div className="glass-panel flex items-center gap-2.5 rounded-full px-4 py-2.5 text-xs shadow-panel">
-              <span className="h-1.5 w-1.5 rounded-full bg-teal-400 shadow-[0_0_8px_2px_rgba(79,214,200,0.6)]" />
-              <span className="text-ice-300">{chip.label}</span>
-              <span className="font-mono text-[0.65rem] text-teal-300">{chip.status}</span>
+            <div className="glass-panel rounded-2xl px-4 py-3.5 shadow-panel">
+              <p className="eyebrow text-[0.6rem] text-ice-400">{card.title}</p>
+              <div className="mt-2 flex items-center gap-2">
+                <span className={`h-1.5 w-1.5 rounded-full ${toneStyle[card.tone].dot}`} />
+                <span className={`font-mono text-xs font-semibold uppercase tracking-wide ${toneStyle[card.tone].text}`}>
+                  {card.status}
+                </span>
+              </div>
+              <p className="mt-2 border-t border-white/8 pt-2 font-mono text-[0.65rem] text-ice-400">
+                {card.detail}
+              </p>
             </div>
           </motion.div>
         ))}
@@ -79,7 +123,7 @@ export function Hero() {
             SmartEye eQMS
           </motion.p>
 
-          <h1 className="mt-7 font-display text-[2.6rem] font-bold leading-[1.05] tracking-tightest text-ice-100 sm:text-6xl lg:text-[5.2rem]">
+          <h1 className="mt-7 font-display text-[2.65rem] font-bold leading-[1.03] tracking-tightest text-ice-100 sm:text-6xl lg:text-[5.75rem] xl:text-[6.25rem]">
             {headlineWords.map((word, i) => (
               <span key={word} className="mr-3 inline-block overflow-hidden sm:mr-4">
                 <motion.span

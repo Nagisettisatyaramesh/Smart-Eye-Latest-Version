@@ -17,11 +17,15 @@ const categoryPattern: Record<string, string> = {
 export function ResourcesPreview() {
   const posts = blogPosts.slice(0, 3);
   return (
-    <section className="relative overflow-hidden bg-void py-28 sm:py-36">
+    <section className="relative overflow-hidden bg-white py-28 sm:py-36">
       <Container className="relative">
         <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
-          <SectionHeading eyebrow="Resources" title="Learn from teams building compliant medical devices." />
-          <Link href="/resources" className="group hidden shrink-0 items-center gap-2 text-sm font-medium text-teal-300 lg:flex">
+          <SectionHeading
+            surface="light"
+            eyebrow="Resources"
+            title="Learn from teams building compliant medical devices."
+          />
+          <Link href="/resources" className="group hidden shrink-0 items-center gap-2 text-sm font-medium text-teal-600 lg:flex">
             All resources
             <span className="transition-transform group-hover:translate-x-1">→</span>
           </Link>
@@ -46,8 +50,8 @@ export function ResourcesPreview() {
                     {post.category}
                   </span>
                 </div>
-                <p className="mt-4 text-xs text-ice-400">{post.date}</p>
-                <h3 className="mt-1.5 font-display text-base font-semibold leading-snug text-ice-100 transition-colors group-hover:text-teal-300">
+                <p className="mt-4 text-xs text-graphite-500">{post.date}</p>
+                <h3 className="mt-1.5 font-display text-base font-semibold leading-snug text-navy-950 transition-colors group-hover:text-teal-600">
                   {post.title}
                 </h3>
               </Link>
@@ -56,7 +60,7 @@ export function ResourcesPreview() {
         </motion.div>
 
         <div className="mt-10 flex justify-center lg:hidden">
-          <Link href="/resources" className="text-sm font-medium text-teal-300">
+          <Link href="/resources" className="text-sm font-medium text-teal-600">
             All resources →
           </Link>
         </div>

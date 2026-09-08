@@ -10,6 +10,7 @@ export function SectionHeading({
   align = "left",
   tone = "light",
   size = "md",
+  surface = "dark",
 }: {
   eyebrow?: string;
   title: ReactNode;
@@ -17,12 +18,14 @@ export function SectionHeading({
   align?: "left" | "center";
   tone?: "light" | "muted";
   size?: "md" | "lg";
+  /** Background this heading sits on — "dark" (default) uses ice text, "light" uses navy text. */
+  surface?: "dark" | "light";
 }) {
   return (
     <div className={clsx("max-w-3xl", align === "center" && "mx-auto text-center")}>
       {eyebrow && (
         <Reveal variants={fadeUpSm}>
-          <p className={clsx("eyebrow kicker-line text-teal-400", align === "center" && "justify-center")}>
+          <p className={clsx("eyebrow kicker-line text-teal-600", align === "center" && "justify-center", surface === "dark" && "text-teal-400")}>
             {eyebrow}
           </p>
         </Reveal>
@@ -30,7 +33,8 @@ export function SectionHeading({
       <Reveal delay={0.08} variants={fadeUp}>
         <h2
           className={clsx(
-            "font-display font-semibold tracking-tighter text-ice-100 text-balance",
+            "font-display font-semibold tracking-tighter text-balance",
+            surface === "light" ? "text-navy-950" : "text-ice-100",
             size === "lg" ? "mt-5 text-4xl sm:text-5xl lg:text-6xl" : "mt-5 text-3xl sm:text-4xl lg:text-[2.75rem]",
           )}
         >
@@ -42,7 +46,13 @@ export function SectionHeading({
           <p
             className={clsx(
               "mt-5 text-base sm:text-lg leading-relaxed",
-              tone === "muted" ? "text-ice-400" : "text-ice-300",
+              surface === "light"
+                ? tone === "muted"
+                  ? "text-graphite-500"
+                  : "text-graphite-600"
+                : tone === "muted"
+                  ? "text-ice-400"
+                  : "text-ice-300",
             )}
           >
             {body}
