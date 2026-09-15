@@ -118,6 +118,12 @@ export function Hero() {
             <Button href="/platform" variant="secondary" size="lg" icon={false}>
               Explore SmartEye
             </Button>
+            <Button href="https://youtu.be/YjVfsjdiYAY" variant="ghost" size="lg" icon={false}>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M5 3.5v9l8-4.5-8-4.5z" fill="currentColor" />
+              </svg>
+              Watch a Video
+            </Button>
           </motion.div>
         </div>
       </div>

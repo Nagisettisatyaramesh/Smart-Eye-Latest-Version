@@ -31,6 +31,17 @@ export default function ContactPage() {
               your SaMD design and development process? Get in touch with one of our expert team
               for a free and easy demo from those who built it.
             </p>
+            <a
+              href="https://youtu.be/YjVfsjdiYAY"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-3 rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-ice-200 transition-colors hover:border-teal-400/50 hover:text-teal-300"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M5 3.5v9l8-4.5-8-4.5z" fill="currentColor" />
+              </svg>
+              Watch a Video
+            </a>
           </Reveal>
 
           <Reveal delay={0.15} className="mt-10 space-y-5">
