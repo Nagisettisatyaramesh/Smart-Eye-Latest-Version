@@ -273,8 +273,8 @@ export const templateCategories = [
   "DHF",
 ];
 
-// Full article bodies live on the current SmartEye blog — cards link out to the source
-// article rather than reproducing content we don't have the original text for.
+// Article bodies are migrated in full at src/lib/articles.ts and rendered
+// natively at /resources/[slug] — kept in sync with the source SmartEye blog.
 export const blogPosts = [
   {
     title: "How an eQMS Simplifies ISO 13485 Compliance for UK Medical Device Startups",
@@ -324,7 +324,7 @@ export const blogPosts = [
     slug: "advantages-and-disadvantages-of-e-qms-in-medical-device-companies",
     category: "QMS",
   },
-].map((post) => ({ ...post, url: `https://eqms-smarteye.com/${post.slug}/` }));
+].map((post) => ({ ...post, url: `/resources/${post.slug}` }));
 
 export const securityPrinciples = [
   {

@@ -36,7 +36,7 @@ export function ResourcesPreview() {
         >
           {posts.map((post) => (
             <motion.div key={post.slug} variants={fadeUp}>
-              <Link href={post.url} target="_blank" rel="noopener noreferrer" className="group block">
+              <Link href={post.url} className="group block">
                 <div
                   className={`relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br ${categoryPattern[post.category] ?? "from-teal-500/20 via-navy-800 to-navy-950"} transition-transform duration-500 group-hover:scale-[1.02]`}
                 >

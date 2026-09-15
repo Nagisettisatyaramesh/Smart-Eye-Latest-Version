@@ -32,7 +32,7 @@ export default function ResourcesPage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {blogPosts.map((post) => (
               <Reveal key={post.slug}>
-                <Link href={post.url} target="_blank" rel="noopener noreferrer" className="group block h-full">
+                <Link href={post.url} className="group block h-full">
                   <div
                     className={`relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br ${categoryPattern[post.category] ?? "from-teal-500/20 via-navy-800 to-navy-950"} transition-transform duration-500 group-hover:scale-[1.02]`}
                   >
