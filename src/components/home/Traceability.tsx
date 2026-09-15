@@ -24,7 +24,7 @@ export function Traceability() {
           align="center"
           eyebrow="End-to-end traceability"
           title="From requirement to verification. Nothing gets lost."
-          body="SmartEye's bi-directional traceability web grids keep every user need connected to its requirement, design input, risk, test and result — so coverage is provable in minutes, not weeks."
+          body="SmartEye's bi-directional traceability web grids link user needs, requirements, design, risk and test evidence — represented in a Dynamic Trace Matrix, Risk Management Matrix and Test Execution report Matrix."
         />
 
         <div className="relative mt-20 overflow-x-auto no-scrollbar">

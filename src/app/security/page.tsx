@@ -40,6 +40,11 @@ export default function SecurityPage() {
               </Link>{" "}
               for details.
             </p>
+            <p className="mt-4 text-base leading-relaxed text-ice-300">
+              SmartEye's software is hosted on Azure Web Services — the hosting service of choice
+              for many Fortune 100 companies, including the NHS. Our team is happy to share a
+              system overview covering data storage, disaster recovery and security.
+            </p>
           </Reveal>
         </Container>
       </section>

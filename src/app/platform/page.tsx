@@ -34,7 +34,11 @@ export default function PlatformPage() {
       <section className="relative border-y border-white/8 bg-navy-950 py-20">
         <Container className="max-w-3xl">
           <Reveal>
-            <p className="text-lg leading-relaxed text-ice-300">
+            <p className="eyebrow kicker-line text-teal-400">SmartEye — QMS for medical devices</p>
+            <p className="mt-4 text-lg font-medium leading-relaxed text-ice-100">
+              Ready for your next audit inspection, before you even know it's happening.
+            </p>
+            <p className="mt-5 text-lg leading-relaxed text-ice-300">
               Developing a medical device — especially software-based solutions — requires strict
               adherence to regulations like FDA 21 CFR 820, ISO 13485, and IEC 62304. SmartEye
               centralises and automates your design control processes, making it easy to manage

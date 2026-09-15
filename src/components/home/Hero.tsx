@@ -100,8 +100,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 1.05, ease: easePremium }}
             className="mt-8 max-w-2xl text-lg leading-relaxed text-ice-300 sm:text-xl"
           >
-            Design, develop, test and maintain compliant medical devices and SaMD from one
-            intelligent quality management platform — built to mitigate risk, accelerate
+            The tool medical device and SaMD companies need to optimise their Quality
+            Management System and keep track of regulatory activity — transforming manual,
+            paper-based processes into one platform built to mitigate risk, accelerate
             compliance and improve quality.
           </motion.p>
 

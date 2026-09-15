@@ -25,7 +25,7 @@ export function Templates() {
           <SectionHeading
             eyebrow="Ready-to-use templates"
             title="Start faster with proven quality frameworks."
-            body="SmartEye is pre-installed with hundreds of ready-made SOPs and templates — including QMS, DHF and technical files — with automatic DHF and DMR generation and ready-made checklists, so your documentation meets industry standards from day one."
+            body="SmartEye eQMS is pre-installed with 100s of ready-made SOPs and templates — including QMS, DHF and Technical files — as well as automatic DHF and DMR files generation, helping ensure your documents meet industry standards and guidelines with our ready-made checklists."
           />
         </div>
 

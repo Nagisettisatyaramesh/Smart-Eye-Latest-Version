@@ -27,7 +27,7 @@ export function SamdSection() {
           <SectionHeading
             eyebrow="Software as a Medical Device"
             title="Built for SaMD, not bolted on."
-            body="Standalone medical software carries its own compliance path — SmartEye keeps IEC 62304 software development lifecycle documentation connected to the same requirements, risk and test record as the rest of your device."
+            body="SmartEye provides E2E software life cycle frameworks supporting Agile methodologies — keeping IEC 62304 software development lifecycle documentation connected to the same requirements, risk and test record as the rest of your device."
           />
 
           <motion.div

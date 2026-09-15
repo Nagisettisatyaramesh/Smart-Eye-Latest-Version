@@ -32,7 +32,7 @@ export const heroStats = [
 export const pillars = [
   {
     title: "Join Up Data",
-    body: "Bring requirements, design, risk, testing and documentation together in one connected record, instead of scattered spreadsheets and shared drives.",
+    body: "Bring requirements, design, risk, testing and documentation together in one platform, instead of manual, paper-based processes.",
   },
   {
     title: "Go To Free",
@@ -182,43 +182,43 @@ export const qmsCoreProcesses = [
 export const differentiators = [
   {
     title: "Expertise and Innovation",
-    body: "Built by S-Cube Technologies on real Quality and Regulatory Affairs experience in the medical device sector.",
+    body: "Built on S-Cube Technologies' experience in Quality and Regulatory Affairs, with workflows already configured to follow medical device standards.",
   },
   {
     title: "Cloud-Based Security and Accessibility",
-    body: "Access your QMS securely from wherever your team works.",
+    body: "Hosted on Azure Web Services — the hosting service of choice for many Fortune 100 companies, including the NHS.",
   },
   {
     title: "Comprehensive Regulatory Compliance",
-    body: "Workflows pre-configured around the standards medical device and SaMD teams are held to.",
+    body: "Medical device specific quality and regulatory guidance and controls blended into the eQMS software.",
   },
   {
     title: "Ready-to-Use Templates and Customization",
-    body: "Hundreds of ready-made SOPs and templates, including QMS, DHF and technical files, with automatic DHF and DMR generation.",
+    body: "Pre-installed with 100s of ready-made SOPs and templates, including QMS, DHF and Technical files, with automatic DHF and DMR generation — or use your own.",
   },
   {
     title: "Global Collaboration and Integration",
-    body: "Embedded with Microsoft Office and built for distributed teams to review and approve together.",
+    body: "Embedded with Microsoft Office, with 3rd-party integration for tools like Jira and Microsoft Azure Boards — built for teams to co-author, co-review and co-approve across locations.",
   },
   {
     title: "Seamless Data Migration",
-    body: "Move existing quality records into SmartEye without starting from a blank page.",
+    body: "Several ways to transition your existing QMS documents and data, with a migration plan defined during onboarding.",
   },
   {
     title: "International Application and Scalability",
-    body: "Scales from early-stage startups to international, multi-site organisations.",
+    body: "Works with medical device companies across 5 continents, navigating regulatory pathways and quality system requirements internationally.",
   },
   {
     title: "Licensing and Accessibility",
-    body: "Role-based access for Organisation Admin, Project Admin, Standard Users and External Users.",
+    body: "Cloud-based software accessed via any standard web browser, with monthly or annual subscription licensing.",
   },
   {
     title: "Customer-Centric Onboarding and Support",
-    body: "Guided onboarding designed around your team, not a generic rollout.",
+    body: "Every customer is paired with a dedicated medical device industry expert — time to value typically two to four weeks.",
   },
   {
     title: "Continuous Improvements Without Additional Costs",
-    body: "The platform keeps evolving as part of your subscription.",
+    body: "Regular enhancements at no extra cost — plus 21 CFR Part 11 compliant IQ protocol/checklist and OQ/PQ reports provided free with every upgrade.",
   },
 ];
 
@@ -243,34 +243,34 @@ export const onboardingSteps = [
   {
     number: "01",
     title: "Discover",
-    body: "We learn your product, team structure and current quality processes.",
+    body: "Every customer is paired with a dedicated medical device industry expert to guide you through onboarding.",
   },
   {
     number: "02",
     title: "Configure",
-    body: "SmartEye is configured to your workflows, roles and permission levels.",
+    body: "SmartEye is configured to your workflows, roles and permission levels — with QARA and training services available beyond the standard offering.",
   },
   {
     number: "03",
     title: "Migrate",
-    body: "Existing quality records and documentation are migrated into the platform.",
+    body: "Several different means of transitioning your existing QMS documents and data — a plan is defined during onboarding.",
   },
   {
     number: "04",
     title: "Go Live",
-    body: "Your team is onboarded with customer-centric support from day one.",
+    body: "Time to value typically ranges from two to four weeks, depending on your initial focus area.",
   },
 ];
 
 export const templateCategories = [
+  "ISO 13485",
+  "IEC 62304",
+  "ISO 14971",
+  "IEC 62366",
+  "MDR Technical File",
+  "FDA Design Control",
   "QMS",
   "DHF",
-  "DMR",
-  "Technical File",
-  "Risk Management",
-  "Design Control",
-  "SOP",
-  "Audit Documents",
 ];
 
 // Full article bodies live on the current SmartEye blog — cards link out to the source

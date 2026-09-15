@@ -9,18 +9,18 @@ import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 const problems = [
   {
     number: "01",
-    title: "Disconnected documentation",
-    body: "Requirements, design files, risk records and test evidence scattered across spreadsheets, shared drives and email threads — with no single source of truth.",
+    title: "Manual, paper-based processes",
+    body: "Requirements, design files, risk records and test evidence kept in manual, paper-based processes, instead of one connected platform.",
   },
   {
     number: "02",
-    title: "Complex regulatory workflows",
-    body: "ISO 13485, IEC 62304, FDA design control and EU MDR each demand their own paper trail, manually stitched together ahead of every audit.",
+    title: "Regulatory activity to keep track of",
+    body: "ISO 13485, IEC 62304, ISO 14971 and FDA 21 CFR Part 820 each carry their own quality and regulatory guidance and controls to stay on top of.",
   },
   {
     number: "03",
     title: "Limited traceability",
-    body: "Without bi-directional links from user need to verification, proving coverage takes days of manual cross-referencing instead of minutes.",
+    body: "Without bi-directional traceability linking user needs, requirements, design and test evidence, proving coverage is slow and manual.",
   },
 ];
 
