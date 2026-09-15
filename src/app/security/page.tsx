@@ -22,8 +22,8 @@ const pillars = [
     ),
   },
   {
-    title: "Encryption",
-    body: "Data is encrypted in transit and at rest, wherever your team connects from.",
+    title: "Cloud Security",
+    body: "Secure cloud access to your quality system, wherever your team connects from.",
     icon: (
       <>
         <rect x="5" y="11" width="14" height="9" rx="1.5" strokeLinecap="round" strokeLinejoin="round" />
