@@ -278,13 +278,13 @@ export const templateCategories = [
 export const blogPosts = [
   {
     title: "How an eQMS Simplifies ISO 13485 Compliance for UK Medical Device Startups",
-    date: "18 August 2026",
+    date: "16 July 2026",
     slug: "how-an-eqms-simplifies-iso-13485-compliance-for-uk-medical-device-startups",
     category: "Regulatory",
   },
   {
-    title: "Why UK Medical Device Startups are Adopting eQMS to Accelerate ISO 13485 Compliance",
-    date: "16 July 2026",
+    title: "Why UK Medical Device Startups are Adopting eQMS to accelerate ISO 13485 Compliance",
+    date: "6 July 2026",
     slug: "why-uk-medical-device-startups-are-adopting-eqms-to-accelerate-iso-13485-compliance",
     category: "QMS",
   },
@@ -308,19 +308,19 @@ export const blogPosts = [
   },
   {
     title: "Streamlining Medical Device Design and Development Under EU MDR 2017/745: A Comprehensive Guide",
-    date: "15 January 2025",
+    date: "18 August 2023",
     slug: "streamlining-medical-device-design-and-development-under-eu-mdr-2017-745-a-comprehensive-guide",
     category: "Regulatory",
   },
   {
-    title: "Documentation Control in ISO 13485",
-    date: "15 January 2025",
+    title: "Documentation control in ISO 13485",
+    date: "4 July 2022",
     slug: "documentation-control-in-iso-13485",
     category: "ISO 13485",
   },
   {
-    title: "Advantages and Disadvantages of eQMS in Medical Device Companies",
-    date: "15 January 2025",
+    title: "Advantages and disadvantages of e-QMS in medical device companies",
+    date: "14 June 2022",
     slug: "advantages-and-disadvantages-of-e-qms-in-medical-device-companies",
     category: "QMS",
   },

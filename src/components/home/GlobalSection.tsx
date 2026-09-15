@@ -16,7 +16,7 @@ const regions = [
 
 const controls = [
   "Role-based access permissions",
-  "Encrypted access from any location",
+  "Secure cloud access from any location",
   "Full audit trail on every record",
   "Controlled review and approval chains",
 ];

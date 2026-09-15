@@ -11,24 +11,19 @@ export const metadata: Metadata = {
 
 const roles = [
   {
-    title: "Java Spring Boot Engineer",
-    meta: "8–12 years experience · Remote",
-    skills: [
-      "Developing new APIs using Spring Boot",
-      "Spring Cloud & Spring Security, microservices architecture",
-      "REST API and multi-tenant architecture design",
-      "Docker, Kubernetes and CI/CD",
-    ],
+    title: "Data Engineer / Software Engineer",
+    meta: "TKM Intelligence Limited · Manchester, UK",
+    url: "https://eqms-smarteye.com/data-engineer-software-engineer/",
   },
   {
-    title: "UI Engineer — React.js + TypeScript",
-    meta: "8–12 years experience · Remote",
-    skills: [
-      "Developing new user-facing features using React.js",
-      "Building reusable components and front-end libraries",
-      "Modern front-end build pipelines and tooling",
-      "RESTful APIs and modern authorisation (JWT)",
-    ],
+    title: "Content Writer / Digital Marketing / Blog Writer",
+    meta: "TKM Intelligence Limited · Manchester, UK",
+    url: "https://eqms-smarteye.com/content-writer-digital-marketing-blog-writer/",
+  },
+  {
+    title: "Software Test Engineer",
+    meta: "TKM Intelligence Limited · Altrincham, UK",
+    url: "https://eqms-smarteye.com/software-test-engineer/",
   },
 ];
 
@@ -38,7 +33,7 @@ export default function CareersPage() {
       <PageHero
         eyebrow="Careers"
         title="Help build the platform medical device teams rely on."
-        body="We're a remote-first team building SmartEye eQMS for medical device and SaMD companies worldwide."
+        body="Roles behind SmartEye eQMS are listed on our jobs page as they open — a snapshot of recent postings is below."
       />
 
       <section className="border-y border-white/8 bg-navy-950 py-20">
@@ -46,24 +41,19 @@ export default function CareersPage() {
           <div className="space-y-6">
             {roles.map((role) => (
               <Reveal key={role.title}>
-                <div className="rounded-3xl border border-white/8 bg-white/[0.02] p-8">
+                <a
+                  href={role.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block rounded-3xl border border-white/8 bg-white/[0.02] p-8 transition-colors hover:border-teal-400/30"
+                >
                   <h2 className="font-display text-xl font-semibold text-ice-100">{role.title}</h2>
                   <p className="mt-1 text-sm text-teal-300">{role.meta}</p>
-                  <ul className="mt-5 space-y-2.5">
-                    {role.skills.map((s) => (
-                      <li key={s} className="flex gap-3 text-sm leading-relaxed text-ice-300">
-                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-teal-400/70" />
-                        {s}
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href={`mailto:${company.email}?subject=${encodeURIComponent(role.title)}`}
-                    className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-teal-300 hover:text-teal-200"
-                  >
-                    Apply — {company.email}
-                  </a>
-                </div>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-teal-300 group-hover:text-teal-200">
+                    View listing
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  </span>
+                </a>
               </Reveal>
             ))}
           </div>

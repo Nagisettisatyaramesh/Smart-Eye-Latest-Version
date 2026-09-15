@@ -7,11 +7,11 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { viewportOnce } from "@/lib/motion";
 
 const rows = [
-  { id: "TC-2201", req: "REQ-118", method: "Bench Test", status: "PASS", reviewer: "J. Alvarez", approval: "Approved" },
-  { id: "TC-2202", req: "REQ-119", method: "Automated", status: "PASS", reviewer: "S. Ncube", approval: "Approved" },
-  { id: "TC-2203", req: "REQ-122", method: "Usability", status: "IN REVIEW", reviewer: "M. Okafor", approval: "Pending" },
-  { id: "TC-2204", req: "REQ-124", method: "Bench Test", status: "PASS", reviewer: "J. Alvarez", approval: "Approved" },
-  { id: "TC-2205", req: "REQ-130", method: "Software V&V", status: "VALIDATED", reviewer: "R. Kaur", approval: "Approved" },
+  { id: "TC-2201", req: "REQ-118", method: "Bench Test", status: "PASS", reviewer: "QA Reviewer", approval: "Approved" },
+  { id: "TC-2202", req: "REQ-119", method: "Automated", status: "PASS", reviewer: "Test Engineer", approval: "Approved" },
+  { id: "TC-2203", req: "REQ-122", method: "Usability", status: "IN REVIEW", reviewer: "Usability Lead", approval: "Pending" },
+  { id: "TC-2204", req: "REQ-124", method: "Bench Test", status: "PASS", reviewer: "QA Reviewer", approval: "Approved" },
+  { id: "TC-2205", req: "REQ-130", method: "Software V&V", status: "VALIDATED", reviewer: "V&V Lead", approval: "Approved" },
 ];
 
 const statusStyle: Record<string, string> = {
