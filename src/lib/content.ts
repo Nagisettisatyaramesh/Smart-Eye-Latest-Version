@@ -326,6 +326,17 @@ export const blogPosts = [
   },
 ].map((post) => ({ ...post, url: `/resources/${post.slug}` }));
 
+// Videos embedded on the source site's Resources page (https://eqms-smarteye.com/resources/)
+export const videos = [
+  { id: "YjVfsjdiYAY", title: "EQMS - SmartEye by Scube Technologies" },
+  { id: "p7tZN8k9nM8", title: "One of the best eQMS for Medical Devices" },
+  {
+    id: "hOhDr8tnIbw",
+    title: "Medica 2023 - Smarteye is the best eQMS for Medical Device companies - Anindya Mookerjea",
+  },
+  { id: "mghgVKrNWqc", title: "Why should you choose this eQMS with Anindya Mookerjea" },
+];
+
 export const securityPrinciples = [
   {
     title: "Confidentiality",

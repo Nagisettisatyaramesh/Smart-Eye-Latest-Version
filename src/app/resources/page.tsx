@@ -4,7 +4,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { CTABand } from "@/components/ui/CTABand";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { blogPosts } from "@/lib/content";
+import { blogPosts, videos } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Resources",
@@ -54,24 +54,46 @@ export default function ResourcesPage() {
       </section>
 
       <section className="bg-void py-24">
-        <Container className="max-w-3xl">
+        <Container>
           <Reveal>
             <p className="eyebrow kicker-line text-teal-400">Videos &amp; media</p>
             <h2 className="mt-5 font-display text-2xl font-semibold text-ice-100 sm:text-3xl">
               See SmartEye eQMS in action.
             </h2>
-            <a
-              href="https://youtu.be/YjVfsjdiYAY"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-3 rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-ice-200 transition-colors hover:border-teal-400/50 hover:text-teal-300"
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M5 3.5v9l8-4.5-8-4.5z" fill="currentColor" />
-              </svg>
-              Watch a video
-            </a>
           </Reveal>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {videos.map((video) => (
+              <Reveal key={video.id}>
+                <a
+                  href={`https://youtu.be/${video.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block"
+                >
+                  <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/8 bg-navy-950">
+                    <img
+                      src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                      alt=""
+                      className="h-full w-full object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-navy-950/20 transition-colors duration-300 group-hover:bg-navy-950/10" />
+                    <span className="absolute inset-0 flex items-center justify-center">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-navy-950/70 backdrop-blur transition-transform duration-300 group-hover:scale-105">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                          <path d="M5 3.5v9l8-4.5-8-4.5z" fill="#f5f8fa" />
+                        </svg>
+                      </span>
+                    </span>
+                  </div>
+                  <p className="mt-3 text-sm leading-snug text-ice-200 transition-colors group-hover:text-teal-300">
+                    {video.title}
+                  </p>
+                </a>
+              </Reveal>
+            ))}
+          </div>
         </Container>
       </section>
 
