@@ -9,8 +9,8 @@ import { easePremium } from "@/lib/motion";
 const headlineWords = ["Quality", "intelligence", "for", "medical", "device", "innovation."];
 
 const floatingChips = [
-  { label: "Design Verification", status: "Passed", top: "18%", left: "8%", delay: 1.6 },
-  { label: "ISO 14971 Risk Review", status: "On Track", top: "68%", left: "6%", delay: 1.9 },
+  { label: "Design Verification", status: "Passed", top: "9%", left: "5%", delay: 1.6 },
+  { label: "ISO 14971 Risk Review", status: "On Track", top: "89%", left: "5%", delay: 1.9 },
   { label: "IEC 62304 Trace", status: "Linked", top: "24%", left: "82%", delay: 2.1 },
   { label: "CAPA-0142", status: "Closed", top: "72%", left: "80%", delay: 2.35 },
 ];
@@ -81,7 +81,7 @@ export function Hero() {
 
           <h1 className="mt-7 font-display text-[2.6rem] font-bold leading-[1.05] tracking-tightest text-ice-100 sm:text-6xl lg:text-[5.2rem]">
             {headlineWords.map((word, i) => (
-              <span key={word} className="mr-3 inline-block overflow-hidden sm:mr-4">
+              <span key={word} className="mr-3 inline-block overflow-hidden pb-[0.18em] -mb-[0.18em] sm:mr-4">
                 <motion.span
                   initial={{ y: "110%" }}
                   animate={{ y: "0%" }}
