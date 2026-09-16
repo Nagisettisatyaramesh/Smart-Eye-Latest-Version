@@ -15,8 +15,14 @@ import { Analytics } from "@/components/home/Analytics";
 import { Onboarding } from "@/components/home/Onboarding";
 import { ResourcesPreview } from "@/components/home/ResourcesPreview";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import { getPublishedBlogs } from "@/lib/blogs";
 
-export default function HomePage() {
+// Picks up newly published admin posts within the minute.
+export const revalidate = 30;
+
+export default async function HomePage() {
+  const blogPosts = await getPublishedBlogs();
+
   return (
     <>
       <Hero />
@@ -34,7 +40,7 @@ export default function HomePage() {
       <Templates />
       <Analytics />
       <Onboarding />
-      <ResourcesPreview />
+      <ResourcesPreview posts={blogPosts} />
       <FinalCTA />
     </>
   );

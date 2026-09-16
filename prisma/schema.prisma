@@ -1,0 +1,57 @@
+// SmartEye Blog CMS — Prisma schema.
+//
+// Local dev uses SQLite (zero setup — file lives at prisma/dev.db).
+// IMPORTANT before deploying to Vercel: SQLite's file lives on a serverless
+// filesystem that is ephemeral there — it will NOT reliably persist between
+// requests or survive a redeploy. Before going live, switch `provider` below
+// to "postgresql", point DATABASE_URL at a real Postgres instance (Vercel
+// Postgres, Supabase, Neon all have a free tier), and run:
+//   npx prisma migrate deploy
+// The application code (src/lib/db.ts, src/lib/blogs.ts, all API routes)
+// does not need to change — Prisma abstracts the difference.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum BlogStatus {
+  DRAFT
+  PUBLISHED
+  SCHEDULED
+  ARCHIVED
+}
+
+model Blog {
+  id            String     @id @default(cuid())
+  title         String
+  slug          String     @unique
+  excerpt       String
+  content       String // sanitized HTML from the Tiptap editor
+  featuredImage String?
+  author        String
+  category      String
+  tags          String // comma-separated — SQLite has no native array type
+  status        BlogStatus @default(DRAFT)
+
+  publishedAt DateTime?
+  scheduledAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // SEO
+  seoTitle        String?
+  metaDescription String?
+  focusKeywords   String?
+  canonicalUrl    String?
+  ogImage         String?
+  socialTitle     String?
+  socialDescription String?
+
+  @@index([status])
+  @@index([slug])
+}

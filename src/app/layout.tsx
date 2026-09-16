@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { Nav } from "@/components/layout/Nav";
-import { Footer } from "@/components/layout/Footer";
-import { GrainOverlay } from "@/components/ui/GrainOverlay";
-import { ChatbotWidget } from "@/components/ChatbotWidget";
 
 const display = Manrope({
   subsets: ["latin"],
@@ -55,6 +51,11 @@ export const metadata: Metadata = {
   },
 };
 
+// Intentionally minimal: html/body shell, fonts and site-wide metadata only.
+// The public site's chrome (skip link, Nav, Footer, chatbot, grain overlay)
+// lives in src/app/(marketing)/layout.tsx instead — the admin portal
+// (src/app/admin) has its own separate layout and never renders any of that
+// public UI.
 export default function RootLayout({
   children,
 }: {
@@ -62,19 +63,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
-      <body>
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-teal-500 focus:px-5 focus:py-2.5 focus:text-navy-950 focus:font-semibold"
-        >
-          Skip to content
-        </a>
-        <GrainOverlay />
-        <Nav />
-        <main id="main-content">{children}</main>
-        <Footer />
-        <ChatbotWidget />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

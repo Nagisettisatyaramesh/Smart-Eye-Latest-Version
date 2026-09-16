@@ -24,6 +24,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local SQLite dev database (Prisma) — production uses Postgres via DATABASE_URL
+/prisma/dev.db
+/prisma/dev.db-journal
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
