@@ -1,9 +1,18 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { CTABand } from "@/components/ui/CTABand";
-import type { Article } from "@/lib/articles";
+import { articles, type Article } from "@/lib/articles";
+
+const categoryPattern: Record<string, string> = {
+  Regulatory: "from-cyan-500/25 via-navy-800 to-navy-950",
+  QMS: "from-teal-500/25 via-navy-800 to-navy-950",
+  "ISO 13485": "from-navy-600/40 via-navy-800 to-navy-950",
+  "Medical Devices": "from-signal-amber/15 via-navy-800 to-navy-950",
+};
 
 export function ArticlePage({ article }: { article: Article }) {
+  const related = articles.filter((a) => a.slug !== article.slug).slice(0, 3);
+
   return (
     <>
       <div className="relative bg-void pb-20 pt-40 sm:pt-48">
@@ -87,6 +96,35 @@ export function ArticlePage({ article }: { article: Article }) {
           </div>
         </Container>
       </div>
+
+      {related.length > 0 && (
+        <div className="bg-navy-950 pb-16 sm:pb-20">
+          <Container className="max-w-3xl">
+            <div className="border-t border-white/8 pt-10">
+              <p className="eyebrow text-ice-400">Related posts</p>
+              <div className="mt-6 grid gap-6 sm:grid-cols-3">
+                {related.map((a) => (
+                  <Link key={a.slug} href={`/resources/${a.slug}`} className="group block">
+                    <div
+                      className={`relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br ${categoryPattern[a.category] ?? "from-teal-500/20 via-navy-800 to-navy-950"} transition-transform duration-500 group-hover:scale-[1.02]`}
+                    >
+                      <div className="absolute inset-0 bg-grid opacity-30" />
+                      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-navy-950 to-transparent" />
+                      <span className="absolute left-3 top-3 rounded-full border border-white/15 bg-navy-950/60 px-2.5 py-1 text-[0.6rem] text-ice-200 backdrop-blur">
+                        {a.category}
+                      </span>
+                    </div>
+                    <p className="mt-3 text-xs text-ice-400">{a.date}</p>
+                    <h3 className="mt-1 font-display text-sm font-semibold leading-snug text-ice-100 transition-colors group-hover:text-teal-300">
+                      {a.title}
+                    </h3>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </Container>
+        </div>
+      )}
 
       <CTABand
         title="See SmartEye eQMS for yourself."

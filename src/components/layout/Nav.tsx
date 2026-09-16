@@ -36,7 +36,14 @@ const links = [
     ],
   },
   { label: "Resources", href: "/resources" },
-  { label: "Company", href: "/about" },
+  {
+    label: "Company",
+    href: "/about",
+    children: [
+      { label: "About", href: "/about" },
+      { label: "Careers", href: "/careers" },
+    ],
+  },
 ];
 
 export function Nav() {

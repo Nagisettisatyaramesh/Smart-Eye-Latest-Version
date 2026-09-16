@@ -1,31 +1,15 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { company } from "@/lib/content";
+import { jobs } from "@/lib/careers";
 
 export const metadata: Metadata = {
   title: "Careers",
   description: "Open roles at S-Cube Technologies, the team behind SmartEye eQMS.",
 };
-
-const roles = [
-  {
-    title: "Data Engineer / Software Engineer",
-    meta: "TKM Intelligence Limited · Manchester, UK",
-    url: "https://eqms-smarteye.com/data-engineer-software-engineer/",
-  },
-  {
-    title: "Content Writer / Digital Marketing / Blog Writer",
-    meta: "TKM Intelligence Limited · Manchester, UK",
-    url: "https://eqms-smarteye.com/content-writer-digital-marketing-blog-writer/",
-  },
-  {
-    title: "Software Test Engineer",
-    meta: "TKM Intelligence Limited · Altrincham, UK",
-    url: "https://eqms-smarteye.com/software-test-engineer/",
-  },
-];
 
 export default function CareersPage() {
   return (
@@ -39,21 +23,21 @@ export default function CareersPage() {
       <section className="border-y border-white/8 bg-navy-950 py-20">
         <Container className="max-w-3xl">
           <div className="space-y-6">
-            {roles.map((role) => (
-              <Reveal key={role.title}>
-                <a
-                  href={role.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+            {jobs.map((job) => (
+              <Reveal key={job.slug}>
+                <Link
+                  href={`/careers/${job.slug}`}
                   className="group block rounded-3xl border border-white/8 bg-white/[0.02] p-8 transition-colors hover:border-teal-400/30"
                 >
-                  <h2 className="font-display text-xl font-semibold text-ice-100">{role.title}</h2>
-                  <p className="mt-1 text-sm text-teal-300">{role.meta}</p>
+                  <h2 className="font-display text-xl font-semibold text-ice-100">{job.title}</h2>
+                  <p className="mt-1 text-sm text-teal-300">
+                    {job.employer} · {job.city}
+                  </p>
                   <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-teal-300 group-hover:text-teal-200">
                     View listing
                     <span className="transition-transform group-hover:translate-x-1">→</span>
                   </span>
-                </a>
+                </Link>
               </Reveal>
             ))}
           </div>
