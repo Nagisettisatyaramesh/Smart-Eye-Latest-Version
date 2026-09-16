@@ -1,21 +1,17 @@
 // SmartEye Blog CMS — Prisma schema.
 //
-// Local dev uses SQLite (zero setup — file lives at prisma/dev.db).
-// IMPORTANT before deploying to Vercel: SQLite's file lives on a serverless
-// filesystem that is ephemeral there — it will NOT reliably persist between
-// requests or survive a redeploy. Before going live, switch `provider` below
-// to "postgresql", point DATABASE_URL at a real Postgres instance (Vercel
-// Postgres, Supabase, Neon all have a free tier), and run:
-//   npx prisma migrate deploy
-// The application code (src/lib/db.ts, src/lib/blogs.ts, all API routes)
-// does not need to change — Prisma abstracts the difference.
+// Uses Postgres. Locally, point DATABASE_URL at any reachable Postgres
+// instance (the same production database works fine for local dev too —
+// `vercel env pull .env.local` after provisioning one on Vercel). The
+// `npm run build` script runs `prisma migrate deploy` automatically, so a
+// fresh database gets its schema created on the first deploy.
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
