@@ -4,6 +4,7 @@ import "./globals.css";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { GrainOverlay } from "@/components/ui/GrainOverlay";
+import { ChatbotWidget } from "@/components/ChatbotWidget";
 
 const display = Manrope({
   subsets: ["latin"],
@@ -72,6 +73,7 @@ export default function RootLayout({
         <Nav />
         <main id="main-content">{children}</main>
         <Footer />
+        <ChatbotWidget />
       </body>
     </html>
   );
