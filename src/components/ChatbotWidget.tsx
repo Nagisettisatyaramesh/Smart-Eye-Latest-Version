@@ -20,7 +20,7 @@ function stripAssistantSuffix(root: ParentNode): boolean {
 export function ChatbotWidget() {
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = "http://chatbot.vitalitysoft.com/widget.js";
+    script.src = "https://chatbot.vitalitysoft.com/widget.js";
     script.setAttribute("data-website-id", "smart-eye");
     script.setAttribute("data-chat-endpoint", "/api/chat-semantic");
     document.body.appendChild(script);
