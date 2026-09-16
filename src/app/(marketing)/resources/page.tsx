@@ -4,21 +4,23 @@ import { PageHero } from "@/components/ui/PageHero";
 import { CTABand } from "@/components/ui/CTABand";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { blogPosts, videos } from "@/lib/content";
+import { videos } from "@/lib/content";
+import { getPublishedBlogs } from "@/lib/blogs";
+import { getCategoryGradient } from "@/lib/categoryColors";
+import { formatDisplayDate } from "@/lib/formatDate";
 
 export const metadata: Metadata = {
   title: "Resources",
   description: "Guides and articles on ISO 13485, medical device quality management and SaMD compliance.",
 };
 
-const categoryPattern: Record<string, string> = {
-  Regulatory: "from-cyan-500/25 via-navy-800 to-navy-950",
-  QMS: "from-teal-500/25 via-navy-800 to-navy-950",
-  "ISO 13485": "from-navy-600/40 via-navy-800 to-navy-950",
-  "Medical Devices": "from-signal-amber/15 via-navy-800 to-navy-950",
-};
+// Blogs are admin-managed (published/unpublished at any time) — always
+// render fresh rather than caching a stale listing.
+export const dynamic = "force-dynamic";
 
-export default function ResourcesPage() {
+export default async function ResourcesPage() {
+  const blogPosts = await getPublishedBlogs();
+
   return (
     <>
       <PageHero
@@ -32,17 +34,21 @@ export default function ResourcesPage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {blogPosts.map((post) => (
               <Reveal key={post.slug}>
-                <Link href={post.url} className="group block h-full">
+                <Link href={`/resources/${post.slug}`} className="group block h-full">
                   <div
-                    className={`relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br ${categoryPattern[post.category] ?? "from-teal-500/20 via-navy-800 to-navy-950"} transition-transform duration-500 group-hover:scale-[1.02]`}
+                    className={`relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br ${getCategoryGradient(post.category)} transition-transform duration-500 group-hover:scale-[1.02]`}
                   >
-                    <div className="absolute inset-0 bg-grid opacity-30" />
+                    {post.featuredImage ? (
+                      <img src={post.featuredImage} alt="" className="h-full w-full object-cover" />
+                    ) : (
+                      <div className="absolute inset-0 bg-grid opacity-30" />
+                    )}
                     <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-navy-950 to-transparent" />
                     <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-navy-950/60 px-3 py-1 text-[0.65rem] text-ice-200 backdrop-blur">
                       {post.category}
                     </span>
                   </div>
-                  <p className="mt-4 text-xs text-ice-400">{post.date}</p>
+                  <p className="mt-4 text-xs text-ice-400">{formatDisplayDate(post.publishedAt)}</p>
                   <h2 className="mt-1.5 font-display text-base font-semibold leading-snug text-ice-100 transition-colors group-hover:text-teal-300">
                     {post.title}
                   </h2>

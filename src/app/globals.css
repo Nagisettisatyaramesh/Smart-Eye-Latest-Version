@@ -114,3 +114,112 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Rendered rich-text blog content (admin-authored, sanitized server-side) —
+   matches the same typography tokens used by the migrated article pages. */
+.blog-prose {
+  color: #c9d4dc; /* ice-300 */
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.blog-prose > * + * {
+  margin-top: 1.25rem;
+}
+.blog-prose h1,
+.blog-prose h2,
+.blog-prose h3,
+.blog-prose h4 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 600;
+  color: #f5f8fa; /* ice-100 */
+  line-height: 1.25;
+}
+.blog-prose h1 {
+  font-size: 1.75rem;
+}
+.blog-prose h2 {
+  font-size: 1.5rem;
+}
+.blog-prose h3 {
+  font-size: 1.25rem;
+}
+.blog-prose h4 {
+  font-size: 1.1rem;
+}
+.blog-prose a {
+  color: #4fd6c8; /* teal-400 */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.blog-prose a:hover {
+  color: #7fe8ff; /* cyan-300 */
+}
+.blog-prose strong {
+  color: #f5f8fa;
+  font-weight: 600;
+}
+.blog-prose ul,
+.blog-prose ol {
+  padding-left: 1.5rem;
+}
+.blog-prose ul {
+  list-style: disc;
+}
+.blog-prose ol {
+  list-style: decimal;
+}
+.blog-prose li + li {
+  margin-top: 0.5rem;
+}
+.blog-prose blockquote {
+  border-left: 2px solid rgba(79, 214, 200, 0.4);
+  padding-left: 1.25rem;
+  color: #9fb0bc; /* ice-400 */
+  font-style: italic;
+}
+.blog-prose hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 2rem 0;
+}
+.blog-prose img {
+  border-radius: 1rem;
+  max-width: 100%;
+  height: auto;
+}
+.blog-prose pre {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.85rem;
+}
+.blog-prose code {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.85em;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.15em 0.4em;
+  border-radius: 0.35em;
+}
+.blog-prose pre code {
+  background: none;
+  padding: 0;
+}
+.blog-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.blog-prose th,
+.blog-prose td {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+}
+.blog-prose th {
+  background: rgba(255, 255, 255, 0.03);
+  color: #f5f8fa;
+  font-weight: 600;
+}
