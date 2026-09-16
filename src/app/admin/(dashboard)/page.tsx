@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getBlogStats } from "@/lib/blogs";
 import { formatDisplayDate } from "@/lib/formatDate";
 import { StatusBadge } from "@/components/admin/StatusBadge";
+import { SeedLegacyButton } from "@/components/admin/SeedLegacyButton";
 
 export const dynamic = "force-dynamic";
 
@@ -35,6 +36,8 @@ export default async function AdminDashboard() {
           </div>
         ))}
       </div>
+
+      {stats.total === 0 && <SeedLegacyButton />}
 
       <div className="mt-10 grid gap-8 lg:grid-cols-2">
         <div>
