@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db";
 import type { Blog, BlogStatus } from "@prisma/client";
+import { DEFAULT_TEMPLATE_SLUG } from "@/lib/blogTemplates";
 
 export const DEFAULT_CATEGORIES = ["Regulatory", "QMS", "ISO 13485", "Medical Devices"];
 
@@ -95,6 +96,7 @@ export type BlogInput = {
   author: string;
   category: string;
   tags?: string[];
+  templateSlug?: string;
   seoTitle?: string;
   metaDescription?: string;
   focusKeywords?: string;
@@ -129,6 +131,7 @@ export async function createBlog(input: BlogInput, status: BlogStatus, scheduled
       author: input.author.trim() || "SmartEye Team",
       category: input.category.trim() || "General",
       tags: (input.tags ?? []).join(","),
+      templateSlug: input.templateSlug?.trim() || DEFAULT_TEMPLATE_SLUG,
       status,
       publishedAt: status === "PUBLISHED" ? new Date() : null,
       scheduledAt: status === "SCHEDULED" ? scheduledAt : null,
@@ -166,6 +169,7 @@ export async function updateBlog(
       author: input.author.trim() || "SmartEye Team",
       category: input.category.trim() || "General",
       tags: (input.tags ?? []).join(","),
+      templateSlug: input.templateSlug?.trim() || existing.templateSlug,
       status: nextStatus,
       publishedAt:
         nextStatus === "PUBLISHED" && existing.status !== "PUBLISHED" ? new Date() : existing.publishedAt,

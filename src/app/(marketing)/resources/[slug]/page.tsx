@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { BlogArticleView } from "@/components/resources/BlogArticleView";
+import { getBlogTemplateRenderer } from "@/components/blog-templates";
 import { getPublishedBlogBySlug, getRelatedPublishedBlogs } from "@/lib/blogs";
 import { SITE_URL } from "@/lib/site";
 
@@ -43,6 +43,7 @@ export default async function BlogRoute({ params }: { params: Promise<{ slug: st
 
   const related = await getRelatedPublishedBlogs(blog.id, 3);
   const canonical = blog.canonicalUrl || `${SITE_URL}/resources/${blog.slug}`;
+  const TemplateRenderer = getBlogTemplateRenderer(blog.templateSlug);
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -64,7 +65,7 @@ export default async function BlogRoute({ params }: { params: Promise<{ slug: st
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <BlogArticleView blog={blog} related={related} />
+      <TemplateRenderer blog={blog} related={related} />
     </>
   );
 }

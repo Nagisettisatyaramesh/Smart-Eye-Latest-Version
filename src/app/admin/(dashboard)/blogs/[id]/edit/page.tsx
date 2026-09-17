@@ -19,6 +19,7 @@ export default async function EditBlogPage({ params }: { params: Promise<{ id: s
     author: blog.author,
     category: blog.category,
     tags: blog.tags,
+    templateSlug: blog.templateSlug,
     status: blog.status,
     scheduledAt: blog.scheduledAt ? blog.scheduledAt.toISOString() : null,
     seoTitle: blog.seoTitle,
