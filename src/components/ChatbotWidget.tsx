@@ -2,29 +2,7 @@
 
 import { useEffect } from "react";
 
-const LEAD_STORAGE_KEY = "smarteye_chat_lead";
-
 type Lead = { name: string; email: string };
-
-function getStoredLead(): Lead | null {
-  try {
-    const raw = window.localStorage.getItem(LEAD_STORAGE_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    if (parsed && typeof parsed.name === "string" && typeof parsed.email === "string") return parsed;
-  } catch {
-    // localStorage unavailable (private mode, blocked) — gate just re-appears each visit.
-  }
-  return null;
-}
-
-function storeLead(lead: Lead) {
-  try {
-    window.localStorage.setItem(LEAD_STORAGE_KEY, JSON.stringify(lead));
-  } catch {
-    // Non-fatal — chat still works, the gate just re-appears next time.
-  }
-}
 
 function sendLeadToServer(lead: Lead) {
   fetch("/api/chat-leads", {
@@ -52,13 +30,14 @@ function stripAssistantSuffix(root: ParentNode): boolean {
 }
 
 // The widget always seeds the conversation with a generic "Hi! How can I help
-// you?" bot bubble as soon as it renders (before the panel is even opened).
-// Once we know the visitor's name, we swap that one bubble's text in place —
-// there's no API for a custom welcome message, so this is the only hook we have.
+// you?" bot bubble as soon as it renders. Once we know the visitor's name, we
+// swap that one bubble's text in place — there's no API for a custom welcome
+// message, so this is the only hook we have. Runs after every gate submission
+// (the gate re-appears each time the chat is opened), so it just always
+// overwrites with the latest name rather than checking what was there before.
 function personalizeGreeting(root: ParentNode, name: string) {
   const firstBotBubble = root.querySelector<HTMLElement>(".aiwa-messages .aiwa-msg-bot");
-  const text = firstBotBubble?.textContent?.trim() ?? "";
-  if (firstBotBubble && /how can i help you\??$/i.test(text) && !text.startsWith("Hi " + name)) {
+  if (firstBotBubble) {
     firstBotBubble.textContent = `Hi ${name}! How can I help you today?`;
   }
 }
@@ -156,7 +135,6 @@ function mountLeadGate(root: ShadowRoot, onSubmit: (lead: Lead) => void) {
       return;
     }
     const lead = { name, email };
-    storeLead(lead);
     sendLeadToServer(lead);
     overlay.remove();
     onSubmit(lead);
@@ -173,22 +151,18 @@ function mountLeadGate(root: ShadowRoot, onSubmit: (lead: Lead) => void) {
   window.setTimeout(() => nameInput.focus(), 50);
 }
 
+// Asks for name + email every time the chat is opened — closing the panel
+// (or refreshing the page, which destroys all this in-memory state anyway)
+// and reopening it always shows the gate again, deliberately with no
+// persistence across opens.
 function setupLeadCapture(root: ShadowRoot) {
   const panel = root.querySelector<HTMLElement>(".aiwa-panel");
   if (!panel || panel.dataset.seLeadWired) return;
   panel.dataset.seLeadWired = "true";
 
-  const existingLead = getStoredLead();
-  if (existingLead) personalizeGreeting(root, existingLead.name);
-
   const maybeShowGate = () => {
     if (!panel.classList.contains("aiwa-open")) return;
-    const lead = getStoredLead();
-    if (lead) {
-      personalizeGreeting(root, lead.name);
-      return;
-    }
-    mountLeadGate(root, (newLead) => personalizeGreeting(root, newLead.name));
+    mountLeadGate(root, (lead) => personalizeGreeting(root, lead.name));
   };
 
   maybeShowGate();
