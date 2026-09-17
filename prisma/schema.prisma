@@ -34,6 +34,11 @@ model Blog {
   tags          String // comma-separated — SQLite has no native array type
   status        BlogStatus @default(DRAFT)
 
+  // Presentation only — controls which layout renders the article on the
+  // public site (src/components/blog-templates). Existing rows and any row
+  // that omits this get the default, so nothing needs a data backfill.
+  templateSlug String @default("modern-article")
+
   publishedAt DateTime?
   scheduledAt DateTime?
   createdAt   DateTime  @default(now())

@@ -3,7 +3,9 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { RichTextEditor } from "@/components/admin/RichTextEditor";
+import { TemplatePicker } from "@/components/admin/TemplatePicker";
 import { DEFAULT_CATEGORIES } from "@/lib/blogs";
+import { DEFAULT_TEMPLATE_SLUG, getBlogTemplate } from "@/lib/blogTemplates";
 
 export type BlogEditorInitial = {
   id?: string;
@@ -15,6 +17,7 @@ export type BlogEditorInitial = {
   author: string;
   category: string;
   tags: string;
+  templateSlug: string;
   status: string;
   scheduledAt: string | null;
   seoTitle: string | null;
@@ -30,9 +33,20 @@ function slugify(s: string) {
   return s.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
-export function BlogEditorForm({ initial }: { initial?: BlogEditorInitial }) {
+export function BlogEditorForm({
+  initial,
+  initialTemplateSlug,
+}: {
+  initial?: BlogEditorInitial;
+  initialTemplateSlug?: string;
+}) {
   const router = useRouter();
   const [id, setId] = useState<string | undefined>(initial?.id);
+
+  const [templateSlug, setTemplateSlug] = useState(
+    initial?.templateSlug ?? initialTemplateSlug ?? DEFAULT_TEMPLATE_SLUG,
+  );
+  const [showTemplatePicker, setShowTemplatePicker] = useState(false);
 
   const [title, setTitle] = useState(initial?.title ?? "");
   const [slug, setSlug] = useState(initial?.slug ?? "");
@@ -102,6 +116,7 @@ export function BlogEditorForm({ initial }: { initial?: BlogEditorInitial }) {
       author,
       category,
       tags: tags.split(",").map((t) => t.trim()).filter(Boolean),
+      templateSlug,
       status: targetStatus,
       scheduledAt,
       seoTitle,
@@ -166,11 +181,40 @@ export function BlogEditorForm({ initial }: { initial?: BlogEditorInitial }) {
     if (savedId) window.open(`/admin/blogs/${savedId}/preview`, "_blank");
   }
 
+  // Swaps the whole form for the template gallery temporarily — none of the
+  // fields above are touched, so switching back just resumes editing.
+  if (showTemplatePicker) {
+    return (
+      <TemplatePicker
+        currentSlug={templateSlug}
+        title="Change Template"
+        subtitle="Your title, content, images and SEO settings are untouched — only the presentation changes."
+        onSelect={(slug) => {
+          setTemplateSlug(slug);
+          setShowTemplatePicker(false);
+        }}
+      />
+    );
+  }
+
   return (
     <div className="space-y-10">
       <div className="flex items-center justify-between">
         <h1 className="font-display text-2xl font-bold text-ice-100">{id ? "Edit Blog" : "Create Blog"}</h1>
         {status && <span className="text-xs text-ice-400">Status: {status}</span>}
+      </div>
+
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/8 bg-white/[0.02] px-5 py-3.5">
+        <p className="text-sm text-ice-300">
+          Template: <span className="font-medium text-ice-100">{getBlogTemplate(templateSlug).name}</span>
+        </p>
+        <button
+          type="button"
+          onClick={() => setShowTemplatePicker(true)}
+          className="text-xs font-medium text-teal-300 hover:text-teal-200"
+        >
+          Change Template
+        </button>
       </div>
 
       {error && (

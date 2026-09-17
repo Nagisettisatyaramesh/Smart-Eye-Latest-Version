@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getBlogById, getRelatedPublishedBlogs } from "@/lib/blogs";
-import { BlogArticleView } from "@/components/resources/BlogArticleView";
+import { getBlogTemplateRenderer } from "@/components/blog-templates";
 
 export const dynamic = "force-dynamic";
 
@@ -10,6 +10,7 @@ export default async function PreviewBlogPage({ params }: { params: Promise<{ id
   if (!blog) notFound();
 
   const related = await getRelatedPublishedBlogs(blog.id, 3);
+  const TemplateRenderer = getBlogTemplateRenderer(blog.templateSlug);
 
-  return <BlogArticleView blog={blog} related={related} previewBanner />;
+  return <TemplateRenderer blog={blog} related={related} previewBanner />;
 }
