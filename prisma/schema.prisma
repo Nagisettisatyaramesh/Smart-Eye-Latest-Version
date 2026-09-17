@@ -51,3 +51,13 @@ model Blog {
   @@index([status])
   @@index([slug])
 }
+
+model ChatLead {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  page      String? // path the visitor was on when they submitted
+  createdAt DateTime @default(now())
+
+  @@index([email])
+}
