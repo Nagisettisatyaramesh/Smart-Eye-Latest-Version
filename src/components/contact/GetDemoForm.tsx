@@ -2,6 +2,8 @@
 
 import { useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCaptcha } from "@/lib/useCaptcha";
+import { CaptchaField } from "@/components/contact/CaptchaField";
 
 type FormState = {
   name: string;
@@ -44,10 +46,12 @@ function isValidEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
-export function ContactForm() {
+export function GetDemoForm() {
   const [values, setValues] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
+  const [captchaError, setCaptchaError] = useState<string | undefined>();
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const captcha = useCaptcha();
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setValues((v) => ({ ...v, [key]: value }));
@@ -62,7 +66,11 @@ export function ContactForm() {
     if (!values.company.trim()) next.company = "Please enter your company name.";
     if (!values.requirement.trim()) next.requirement = "Tell us a little about your requirement.";
     setErrors(next);
-    return Object.keys(next).length === 0;
+
+    const captchaOk = captcha.answer.trim().length > 0;
+    setCaptchaError(captchaOk ? undefined : "Please enter the code shown in the image.");
+
+    return Object.keys(next).length === 0 && captchaOk;
   }
 
   async function handleSubmit(e: FormEvent) {
@@ -74,13 +82,28 @@ export function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          ...values,
+          formType: "demo",
+          captchaToken: captcha.token,
+          captchaAnswer: captcha.answer,
+        }),
       });
-      if (!res.ok) throw new Error("Request failed");
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        if (data.error === "CAPTCHA_MISMATCH") {
+          setCaptchaError("That code doesn't match — please try again with the new image.");
+          captcha.refresh();
+          setStatus("idle");
+          return;
+        }
+        throw new Error("Request failed");
+      }
       setStatus("success");
       setValues(initialState);
     } catch {
       setStatus("error");
+      captcha.refresh();
     }
   }
 
@@ -114,9 +137,9 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Your name" htmlFor="name" error={errors.name}>
+        <Field label="Your name" htmlFor="demo-name" error={errors.name}>
           <input
-            id="name"
+            id="demo-name"
             type="text"
             autoComplete="name"
             value={values.name}
@@ -125,9 +148,9 @@ export function ContactForm() {
             className={inputClass(!!errors.name)}
           />
         </Field>
-        <Field label="Your email" htmlFor="email" error={errors.email}>
+        <Field label="Your email" htmlFor="demo-email" error={errors.email}>
           <input
-            id="email"
+            id="demo-email"
             type="email"
             autoComplete="email"
             value={values.email}
@@ -136,9 +159,9 @@ export function ContactForm() {
             className={inputClass(!!errors.email)}
           />
         </Field>
-        <Field label="Phone number" htmlFor="phone" error={errors.phone} optional>
+        <Field label="Phone number" htmlFor="demo-phone" error={errors.phone} optional>
           <input
-            id="phone"
+            id="demo-phone"
             type="tel"
             autoComplete="tel"
             value={values.phone}
@@ -146,9 +169,9 @@ export function ContactForm() {
             className={inputClass(false)}
           />
         </Field>
-        <Field label="Company name" htmlFor="company" error={errors.company}>
+        <Field label="Company name" htmlFor="demo-company" error={errors.company}>
           <input
-            id="company"
+            id="demo-company"
             type="text"
             autoComplete="organization"
             value={values.company}
@@ -159,12 +182,17 @@ export function ContactForm() {
         </Field>
       </div>
 
-      <Field label="Country" htmlFor="country" error={errors.country} optional>
+      <Field label="Country" htmlFor="demo-country" error={errors.country} optional>
+        {/* [&>option] sets dark option text/bg explicitly — the <select>'s own
+            dark-theme text color (near-white) is fine for the closed control,
+            but the dropdown popup itself is always rendered with a native
+            white background by the browser, regardless of the site's theme,
+            so without this the near-white option text is nearly invisible. */}
         <select
-          id="country"
+          id="demo-country"
           value={values.country}
           onChange={(e) => update("country", e.target.value)}
-          className={inputClass(false)}
+          className={`${inputClass(false)} [&>option]:bg-white [&>option]:text-navy-950`}
         >
           <option value="">Select a country</option>
           {countries.map((c) => (
@@ -175,9 +203,9 @@ export function ContactForm() {
         </select>
       </Field>
 
-      <Field label="Your requirement / interest" htmlFor="requirement" error={errors.requirement}>
+      <Field label="Your requirement / interest" htmlFor="demo-requirement" error={errors.requirement}>
         <textarea
-          id="requirement"
+          id="demo-requirement"
           rows={4}
           value={values.requirement}
           onChange={(e) => update("requirement", e.target.value)}
@@ -198,6 +226,8 @@ export function ContactForm() {
         </a>
         .
       </p>
+
+      <CaptchaField captcha={captcha} error={captchaError} />
 
       <AnimatePresence>
         {status === "error" && (
