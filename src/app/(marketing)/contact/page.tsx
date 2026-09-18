@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { NetworkCanvas } from "@/components/ui/NetworkCanvas";
 import { Reveal } from "@/components/ui/Reveal";
-import { ContactUsForm } from "@/components/contact/ContactUsForm";
-import { GetDemoForm } from "@/components/contact/GetDemoForm";
+import { ContactFormsPanel } from "@/components/contact/ContactFormsPanel";
 import { company } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -62,37 +61,7 @@ export default function ContactPage() {
           </Reveal>
         </div>
 
-        <div className="space-y-10">
-          <Reveal delay={0.1}>
-            <div className="glass-panel scroll-mt-32 rounded-3xl p-8 shadow-panel sm:p-10">
-              <p className="eyebrow text-teal-400">Contact us</p>
-              <h2 className="mt-3 font-display text-2xl font-semibold text-ice-100">Send us a message</h2>
-              <p className="mt-2 text-sm text-ice-400">
-                Have a question, or want to talk to a real person first? Drop us a line and we'll get
-                back to you.
-              </p>
-              <div className="mt-8">
-                <ContactUsForm />
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.15}>
-            <div id="demo" className="glass-panel scroll-mt-32 rounded-3xl p-8 shadow-panel sm:p-10">
-              <p className="eyebrow text-teal-400">Request a demo</p>
-              <h2 className="mt-3 font-display text-2xl font-semibold text-ice-100">
-                Arrange your free tailored demo
-              </h2>
-              <p className="mt-2 text-sm text-ice-400">
-                See for yourself how an enhanced 360° view could benefit your SaMD design and
-                development.
-              </p>
-              <div className="mt-8">
-                <GetDemoForm />
-              </div>
-            </div>
-          </Reveal>
-        </div>
+        <ContactFormsPanel />
       </Container>
     </section>
   );
