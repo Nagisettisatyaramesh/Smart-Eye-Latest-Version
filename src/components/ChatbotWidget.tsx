@@ -29,17 +29,23 @@ function stripAssistantSuffix(root: ParentNode): boolean {
   return false;
 }
 
-// The widget always seeds the conversation with a generic "Hi! How can I help
-// you?" bot bubble as soon as it renders. Once we know the visitor's name, we
-// swap that one bubble's text in place — there's no API for a custom welcome
-// message, so this is the only hook we have. Runs after every gate submission
-// (the gate re-appears each time the chat is opened), so it just always
-// overwrites with the latest name rather than checking what was there before.
+// The widget keeps every message (bot and visitor) in the DOM for as long as
+// the page stays loaded — closing and reopening the panel is just a CSS
+// class toggle, it doesn't clear anything. Since the lead gate now re-asks
+// for name/email on every open (a new "session" from the visitor's point of
+// view), a fresh conversation is started to match: wipe out whatever's
+// there — including a previous, possibly different, person's messages — and
+// seed it with a bot bubble personalized to the name just entered. There's
+// no vendor API for a custom welcome message, so this is the only hook we
+// have, built using the same markup the widget's own addBotMessage() emits.
 function personalizeGreeting(root: ParentNode, name: string) {
-  const firstBotBubble = root.querySelector<HTMLElement>(".aiwa-messages .aiwa-msg-bot");
-  if (firstBotBubble) {
-    firstBotBubble.textContent = `Hi ${name}! How can I help you today?`;
-  }
+  const messagesEl = root.querySelector<HTMLElement>(".aiwa-messages");
+  if (!messagesEl) return;
+  messagesEl.replaceChildren();
+  const bubble = document.createElement("div");
+  bubble.className = "aiwa-msg aiwa-msg-bot";
+  bubble.textContent = `Hi ${name}! How can I help you today?`;
+  messagesEl.appendChild(bubble);
 }
 
 // No vendor API exists for a pre-chat form, so we overlay our own inside the
