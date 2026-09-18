@@ -53,8 +53,35 @@ model Blog {
   socialTitle     String?
   socialDescription String?
 
+  comments Comment[]
+
   @@index([status])
   @@index([slug])
+}
+
+enum CommentStatus {
+  PENDING
+  APPROVED
+  SPAM
+}
+
+model Comment {
+  id       String        @id @default(cuid())
+  blogId   String
+  blog     Blog          @relation(fields: [blogId], references: [id], onDelete: Cascade)
+  parentId String? // set for a reply; null for a top-level comment
+  parent   Comment?      @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies  Comment[]     @relation("CommentReplies")
+  name     String
+  email    String
+  website  String?
+  content  String
+  status   CommentStatus @default(PENDING)
+
+  createdAt DateTime @default(now())
+
+  @@index([blogId])
+  @@index([parentId])
 }
 
 model ChatLead {
