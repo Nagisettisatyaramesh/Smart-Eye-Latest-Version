@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getBlogTemplateRenderer } from "@/components/blog-templates";
+import { CommentsSection } from "@/components/resources/CommentsSection";
 import { getPublishedBlogBySlug, getRelatedPublishedBlogs } from "@/lib/blogs";
+import { getCommentsForBlog } from "@/lib/comments";
 import { SITE_URL } from "@/lib/site";
 
 // Blogs are admin-managed and can change at any time — always render fresh
@@ -42,6 +44,7 @@ export default async function BlogRoute({ params }: { params: Promise<{ slug: st
   if (!blog) notFound();
 
   const related = await getRelatedPublishedBlogs(blog.id, 3);
+  const comments = await getCommentsForBlog(blog.id);
   const canonical = blog.canonicalUrl || `${SITE_URL}/resources/${blog.slug}`;
   const TemplateRenderer = getBlogTemplateRenderer(blog.templateSlug);
 
@@ -66,6 +69,7 @@ export default async function BlogRoute({ params }: { params: Promise<{ slug: st
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <TemplateRenderer blog={blog} related={related} />
+      <CommentsSection blogId={blog.id} comments={comments} />
     </>
   );
 }
