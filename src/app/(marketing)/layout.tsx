@@ -1,4 +1,3 @@
-import { ChatbotWidget } from "@/components/ChatbotWidget";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { GrainOverlay } from "@/components/ui/GrainOverlay";
@@ -16,7 +15,6 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       <Nav />
       <main id="main-content">{children}</main>
       <Footer />
-      <ChatbotWidget />
     </>
   );
 }
